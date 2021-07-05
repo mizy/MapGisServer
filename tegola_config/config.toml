@@ -1,0 +1,42 @@
+[webserver]
+port = ":8080"
+
+# register data providers
+[[providers]]
+name = "pg"           # provider name is referenced from map layers
+type = "postgis"        # the type of data provider. currently only supports postgis
+host = "db"      # postgis database host
+port = 5432             # postgis database port
+database = "map"       # postgis database name
+user = "postgres"         # postgis database user
+password = "postgres"           # postgis database password
+srid = 4326             # The default srid for this provider. If not provided it will be WebMercator (3857)
+
+
+  [[providers.layers]]
+  name = "world_rivers"
+  tablename = "world_rivers"
+  geometry_fieldname = "geom"
+  id_fieldname = "gid"
+
+  [[providers.layers]]
+  name = "world_lakes"
+  tablename = "world_lakes"
+  geometry_fieldname = "geom"
+  id_fieldname = "gid"
+
+[[maps]]
+name = "china"
+center = [117.0982, 20.7374, 4.0] # set the center of the map so the user is auto navigated to Bonn
+
+
+  [[maps.layers]]
+  name = "rivers"
+  provider_layer = "pg.world_rivers"
+  min_zoom = 2
+  max_zoom = 12
+
+  [[maps.layers]]
+  provider_layer = "pg.world_lakes"
+  min_zoom = 2
+  max_zoom = 12

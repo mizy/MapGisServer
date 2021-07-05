@@ -1,0 +1,299 @@
+{
+	"version": 8,
+	"name": "world",
+	"zoom":5,
+	"center": [
+		120,
+		30
+	],
+	"sources": {
+		"world": {
+			"type": "vector",
+			"maxzoom":12,
+			"tiles": [
+				"http://0.0.0.0:18088/tiles/{z}/{x}/{y}.pbf"
+			]
+		}
+	},
+	"glyphs": "/fonts/mapbox/{fontstack}/{range}.pbf",
+	"layers": [
+		{
+            "id": "land",
+            "type": "background",
+            "layout": {},
+            "paint": {"background-color": "hsl(205, 76%, 70%)"}
+		},
+		{
+			"id": "world",
+			"source": "world",
+			"source-layer": "world",
+			"type": "fill",
+			"maxzoom":5,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"fill-color": "hsl(40, 48%, 92%)"
+			}
+		},
+		{
+			"id": "world_lakes",
+			"source": "world",
+			"source-layer": "world_lakes",
+			"type": "fill",
+			"maxzoom":5,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"fill-color": "hsl(205, 76%, 70%)"
+			}
+		},
+		{
+			"id": "world_rivers",
+			"source": "world",
+			"source-layer": "world_rivers",
+			"type": "line",
+			"maxzoom":5,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"line-color": "hsl(40, 48%, 92%)"
+			}
+		},
+		{
+			"id": "china_Border",
+			"source": "world",
+			"source-layer": "china_Border",
+			"type": "fill",
+			"minzoom":3,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"fill-color": "hsl(40, 48%, 90%)"
+			}
+		},
+		{
+			"id": "china_province",
+			"source": "world",
+			"source-layer": "china_province",
+			"type": "fill",
+			"minzoom":3,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"fill-outline-color":"rgba(20, 20, 0,.1)",
+				"fill-color": "hsl(40, 48%, 90%)"
+			}
+		},
+		{
+			"id": "china_road",
+			"source": "world",
+			"source-layer": "china_road",
+			"type": "line",
+			"maxzoom":7,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"line-color": "hsl(38,55,100)"
+			}
+		},
+		
+		{
+			"id": "china_lake",
+			"source": "world",
+			"source-layer": "china_lake",
+			"type": "fill",
+			"maxzoom":6,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"fill-color": "hsl(205, 76%, 70%)"
+			}
+		},
+		{
+			"id": "china_river",
+			"source": "world",
+			"source-layer": "china_river",
+			"type": "line",
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"line-color": "hsl(205, 76%, 70%)"
+			}
+		},
+		{
+			"id": "osm_china_water",
+			"source": "world",
+			"source-layer": "osm_china_water",
+			"type": "fill",
+			"minzoom":7,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"fill-color": "hsl(205, 76%, 70%)"
+			}
+		},
+		
+		{
+			"id": "osm_china_waterways",
+			"source": "world",
+			"source-layer": "osm_china_waterways",
+			"type": "line",
+			"minzoom":9,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"line-color": "hsl(205, 76%, 70%)"
+			}
+		},
+		
+		{
+			"id": "osm_china_roads_trunk",
+			"source": "world",
+			"source-layer": "osm_china_roads_trunk",
+			"type": "line",
+			"minzoom":7,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"line-width": [
+                    "interpolate",
+                    ["exponential", 1.5],
+                    ["zoom"],
+                    7,
+                    2,
+                    12,
+                    6
+                ],
+				"line-color": "hsl(38, 55%, 100%)"
+			}
+		},
+		{
+			"id": "osm_china_roads_primary",
+			"source": "world",
+			"source-layer": "osm_china_roads_primary",
+			"type": "line",
+			"minzoom":9,
+			"layout": {
+				"visibility": "visible"
+			},
+			"paint": {
+				"line-width": [
+                    "interpolate",
+                    ["exponential", 1.5],
+                    ["zoom"],
+                    9,
+                    1,
+                    12,
+                    4
+                ],
+                "line-color": "hsl(38, 55%, 100%)"
+			}
+		},
+		{
+			"id": "osm_china_roads_other",
+			"source": "world",
+			"source-layer": "osm_china_roads_other",
+			"type": "line",
+			"layout": {
+				"visibility": "visible"
+			},
+			"minzoom":11,
+			"paint": {
+                "line-width": [
+                    "interpolate",
+                    ["exponential", 1.5],
+                    ["zoom"],
+                    11,
+                    1,
+                    12,
+                    1
+                ],
+                "line-color": "hsl(36, 37%, 100%)",
+                "line-dasharray": [
+                    "step",
+                    ["zoom"],
+                    ["literal", [1, 0]],
+                    15,
+                    ["literal", [1.75, 1]],
+                    16,
+                    ["literal", [1, 0.75]],
+                    17,
+                    ["literal", [1, 0.5]]
+                ]
+            }
+		},
+		{
+            "id": "osm_china_park",
+            "type": "fill",
+            "source": "world",
+            "source-layer": "osm_china_park",
+            "minzoom": 8,
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(78, 50%, 75%)"
+            }
+		},
+		{
+            "id": "osm_china_commercial",
+            "type": "fill",
+            "source": "world",
+            "source-layer": "osm_china_commercial",
+            "minzoom": 12,
+            "layout": {},
+            "paint": {
+                "fill-color": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    10,
+                    "hsl(40, 45%, 70%)",
+                    12,
+                    "hsl(40, 45%, 85%)"
+                ]
+            }
+		},
+		
+		{
+			"id": "china_provincepoint",
+			"source": "world",
+			"source-layer": "china_province",
+			"type": "symbol",
+			"layout": {
+				"text-field": ["coalesce", ["get", "name"], ["get", "name"]]
+			},
+			"maxzoom":5,
+			"paint": {
+				"text-color": "hsl(0, 1%, 15%)",
+                "text-halo-color": "hsl(216, 43%, 100%)",
+                "text-halo-width": 1
+			}
+		},
+		{
+			"id": "china_citypoint",
+			"source": "world",
+			"source-layer": "china_citypoint",
+			"type": "symbol",
+			"layout": {
+				"text-field": ["coalesce", ["get", "name"], ["get", "name"]]
+			},
+			"minzoom":6,
+			"paint": {
+				"text-color": "hsl(0, 1%, 15%)",
+                "text-halo-color": "hsl(216, 43%, 100%)",
+                "text-halo-width": 1
+			}
+		}
+	
+	]
+}
